@@ -1,33 +1,36 @@
 # Prerequisites
 
-Required software and services for UBI Strapi Provider.
+Required software and resources for local development.
 
 ## Software Requirements
 
-- Node.js 18.x
-- Docker & Docker Compose v2.x
-- Git
-
-## Services
-
-- PostgreSQL 14.17 (provided via Docker)
-- Default ports:
-  - PostgreSQL: 5432
-  - PGAdmin: 8082 (optional)
+| Software | Version |
+|----------|---------|
+| Node.js | 18.x |
+| Yarn | Latest |
+| Git | Latest |
+| Docker & Docker Compose | Latest (Optional) |
+| PostgreSQL | 14.17 (via Docker) |
 
 ## System Requirements
 
-### Development
-- 4GB RAM
-- 10GB disk space
-- Internet connection
+| Resource | Minimum |
+|----------|---------|
+| RAM | 4GB |
+| Disk Space | 10GB |
+| Ports | 1337, 5432 |
 
-### Production
-- 8GB RAM
-- 20GB disk space
-- SSL certificate
+## Quick Verify
 
-## Next Steps
+```bash
+# Versions
+node --version  # Should be v18.x
+yarn --version
+docker --version
 
-1. Follow [Setup Guide](./setup.md)
-2. Configure [Environment Variables](./configuration/environment-variables.md)
+# Ports
+nc -z localhost 1337 || echo "Port 1337 available"
+nc -z localhost 5432 || echo "Port 5432 available"
+```
+
+Next: Follow [Environment Setup](./env-setup.md)
