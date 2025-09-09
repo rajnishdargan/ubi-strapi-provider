@@ -1,16 +1,20 @@
 # System Overview
 
-## Introduction
+## Project Specifications
 
-The UBI Strapi Provider is a content management system (CMS) that manages benefit programs and their related information. It provides an admin interface to create and manage benefits, and an API to access this information.
+- **Framework**: Strapi v5.12.6
+- **Language**: TypeScript enabled
+- **Database**: PostgreSQL
+- **Node Version**: 18.x
+- **Package Manager**: npm >=6.0.0
 
 ## Core Features
 
-### 1. Benefit Management
-- Create and manage benefit programs
-- Set eligibility rules
-- Define application forms
-- Track benefit status
+### 1. Content Management
+- Admin interface for benefit management
+- Custom collections support
+- TypeScript-based development
+- PostgreSQL data persistence
 
 ### 2. Content Types
 
@@ -30,7 +34,7 @@ The UBI Strapi Provider is a content management system (CMS) that manages benefi
 - REST API endpoints
 - API documentation
 - User authentication
-- Data filtering
+- Data filtering and population support (`?populate=*`)
 
 ## System Components
 
@@ -38,11 +42,13 @@ The UBI Strapi Provider is a content management system (CMS) that manages benefi
    - Web interface for content management
    - User management
    - API token generation
+   - Custom collection management
 
 2. **Database**
    - PostgreSQL database
    - Stores all content
    - Handles relationships
+   - No SSL by default
 
 ## Security
 
@@ -51,31 +57,5 @@ The UBI Strapi Provider is a content management system (CMS) that manages benefi
 - API token management
 - Input validation
 
-## Configuration
-
-1. **Environment Variables**
-   - Server settings
-   - Database connection
-   - Security keys
-
-2. **Plugin Settings**
-   - Documentation
-   - User permissions
-   - Upload settings
-
-## Development
-
-1. **Local Setup**
-   - Development server
-   - Hot reload enabled
-   - TypeScript support
-
-2. **Testing**
-   - API testing
-   - Data validation
-
 ## Additional Resources
-
-- [Setup Guide](./setup.md)
-- [API Documentation](http://localhost:1337/documentation)
-- [Sample Data](./sample-data.md)
+- [Official Strapi Docs](https://docs.strapi.io/cms/quick-start)

@@ -1,54 +1,114 @@
 # Build and Run Guide
 
-## Local Development
+## A. Running Locally without Docker
 
-1. Start development server:
+1. Clone and Setup:
+   ```bash
+   git clone https://github.com/PSMRI/ubi-strapi-provider.git
+   cd ubi-strapi-provider/strapi
+   nvm use 18  # Ensure correct Node version
+   npm install  # Using npm as specified in project setup
+   ```
+
+2. Configure Environment:
+   ```bash
+   cp .env.example .env
+   ```
+   
+   Update .env with required configuration:
+   ```bash
+   # Strapi DB
+   DATABASE_CLIENT=postgres
+   DATABASE_HOST=127.0.0.1
+   DATABASE_PORT=5432
+   DATABASE_NAME=uba_provider
+   DATABASE_USERNAME=strapi_db_user
+   DATABASE_PASSWORD=strapi_db_pass
+
+   # Strapi Secrets (Generate using: openssl rand -base64 32)
+   JWT_SECRET=
+   APP_KEYS=
+   API_TOKEN_SALT=
+   ADMIN_JWT_SECRET=
+   TRANSFER_TOKEN_SALT=
+   ```
+
+3. Start PostgreSQL Database:
+   ```bash
+   docker-compose up postgres -d
+   ```
+
+4. Start Development Server:
    ```bash
    cd strapi
-   yarn develop
+   npm run develop  # Using npm as specified in project setup
    ```
 
-2. Access:
-   - Admin: http://localhost:1337/admin
-   - API Docs: http://localhost:1337/documentation
+## B. Running with Docker
 
-## Docker Development
-
-1. Start all services:
+1. Configure Environment:
    ```bash
-   docker-compose up -d
+   cp .env.example .env
+   ```
+   
+   Additional Docker-specific variables:
+   ```bash
+   # PGAdmin (if needed)
+   PGADMIN_DEFAULT_EMAIL=
+   PGADMIN_DEFAULT_PASSWORD=
+
+   # Set to production for Docker deployment
+   NODE_ENV=production
    ```
 
-2. Common commands:
+2. Start Database Services:
+   ```bash
+   # Start PostgreSQL and PgAdmin
+   docker-compose up postgres pgadmin -d
+   ```
+
+3. Build and Start Strapi:
+   ```bash
+   # Build fresh image
+   docker-compose build --no-cache strapi
+
+   # Start Strapi service
+   docker-compose up strapi -d
+   ```
+
+4. Monitor and Manage:
    ```bash
    # View logs
    docker-compose logs -f strapi
 
-   # Stop services
+   # Stop all services
    docker-compose down
-
-   # Restart Strapi
-   docker-compose restart strapi
    ```
 
-## Production Notes
+## Access Points
 
-Basic checklist for DevOps:
+- Admin Panel: http://localhost:1337/admin
+- API Documentation: http://localhost:1337/documentation
+- API Endpoints: http://localhost:1337/api/<collection>
+  - Use `?populate=*` to get all component details
 
-1. Build:
-   ```bash
-   docker-compose -f docker-compose.prod.yml build
-   ```
+## Project Structure
 
-2. Configuration:
-   - Set `NODE_ENV=production`
-   - Use secure database credentials
-   - Configure SSL/TLS
-   - Set up health monitoring
-   - Plan backup strategy
+Key files for deployment:
+- `Dockerfile` - Strapi container configuration
+- `docker-compose.yml` - Service orchestration
+- `deploy.sh` - Deployment script
 
-3. Security:
-   - Update all secrets/keys
-   - Enable SSL
-   - Configure firewalls
-   - Set up monitoring
+## Reference Documentation
+
+- [Strapi Quick Start Guide](https://docs.strapi.io/cms/quick-start)
+- [Strapi Docker Guide](https://docs.strapi.io/cms/installation/docker)
+- [Project Repository](https://github.com/PSMRI/ubi-strapi-provider)
+
+## Important Notes
+
+1. The project uses npm for package management.
+2. TypeScript is enabled by default
+3. PostgreSQL SSL is disabled by default
+4. Custom collections can be created via Strapi admin UI
+5. Node.js version 18.x is required

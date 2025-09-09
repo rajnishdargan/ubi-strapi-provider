@@ -1,36 +1,41 @@
 # Prerequisites
 
-Required software and resources for local development.
+Before you begin, ensure you have the following requirements in place:
 
 ## Software Requirements
 
-| Software | Version |
-|----------|---------|
-| Node.js | 18.x |
-| Yarn | Latest |
-| Git | Latest |
-| Docker & Docker Compose | Latest (Optional) |
-| PostgreSQL | 14.17 (via Docker) |
+- **Node.js**: Version 18.x (use `nvm use 18` if using nvm)
+- **npm**: Version >=6.0.0
+- **Git**: Latest version
+- **Docker & Docker Compose**: Latest version (optional, for containerized deployment)
+- **PostgreSQL**: Version 14.17 (or use Docker)
+
+## Database Requirements
+
+PostgreSQL configuration needed:
+- Support for database creation
+- User with sufficient privileges
+- No SSL connection required by default
 
 ## System Requirements
 
-| Resource | Minimum |
-|----------|---------|
-| RAM | 4GB |
-| Disk Space | 10GB |
-| Ports | 1337, 5432 |
+**Available Ports**: 
+- 1337 (Strapi Admin/API)
+- 5432 (PostgreSQL)
+- Additional ports may be required for PgAdmin if used
+
+## Network Requirements
+
+Ensure access to:
+- Package registries (npm)
+- Git repositories
 
 ## Quick Verify
 
 ```bash
-# Versions
-node --version  # Should be v18.x
-yarn --version
-docker --version
-
-# Ports
-nc -z localhost 1337 || echo "Port 1337 available"
-nc -z localhost 5432 || echo "Port 5432 available"
+# Verify software versions
+node --version
+npm --version
+git --version
+docker --version  # If using Docker
 ```
-
-Next: Follow [Environment Setup](./env-setup.md)
