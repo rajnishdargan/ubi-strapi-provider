@@ -599,8 +599,8 @@ This document provides sample data for creating a benefit in the UBI Strapi Prov
                 },
                 "updatedBy": {
                     "id": 1,
-                    "firstname": "Manoj",
-                    "lastname": "L",
+                    "firstname": "Strapi",
+                    "lastname": "Admin",
                     "username": null
                 }
             }
