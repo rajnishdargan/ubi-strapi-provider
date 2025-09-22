@@ -1,6 +1,6 @@
 # UBI Strapi Provider
 
-Backend CMS for UBI Provider Platform
+Backend CMS for UBI Provider Platform.
 
 ## Developer Guide
 
